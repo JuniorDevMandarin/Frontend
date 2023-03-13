@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-6 col-12 d-none d-md-block login-bg" style="background-image: url({% static '/img/login-bg.png' %});">
+    </div>
+    <div class="col-md-6 col-12 py-5 row align-content-center background-light1">
+        <div class="container col-7">
+            <h1 class="headlineM">
+                {% translate 'Email verified' %}
+            </h1>
+            {% if context.success %}
+            <div class="alert alert-success" role="alert"> {{ context.message }} </div>
+            {% else %}
+            <div class="alert alert-danger" role="alert"> {{ context.error }} </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

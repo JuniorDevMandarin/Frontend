@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-4 col-12 d-none d-md-block login-bg" style="background-image: url({% static '/img/register-bg.png' %});">
+    </div>
+    <div class="col-md-8 col-12 row align-content-center background-light1 adapt-spacing-mobile">
+        <div class="row">
+            <div class="container col-sm-6 col-12 ">
+                <div class="row">
+                    <div class="col-sm-2 col-2 justify-content-end d-grid">
+                        <img src="{% static '/img/register-1.png' %}" alt="">
+                    </div>
+                    <div class="col-sm-10">
+                        <h1 class="headlineS text-start">
+                            {% translate 'Create Account' %}
+                        </h1>
+                        <p style="margin-bottom: 5%;">{% translate 'Already have an account?' %} <a href="{% url 'backoffice:login' %}"
+                            style="color: rgb(253, 105, 6);">{% translate 'Sign in' %}</a>
+                        </p>
+                        <button id="google-button">
+                            <a class="form-icon w-100 h-100 d-flex justify-content-between" style="background-color: transparent;" href="{% url 'api:social_login:begin' 'google-oauth2' %}" role="button">
+                                <img width="20px" class="google-icon" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                                <div class="google-text">{% translate 'Sign in with Google' %}</div>
+                            </a>
+                        </button>
+                        <div style="border-bottom: 1px solid; margin-bottom: 5%; border-color: #E5E0D9;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container col-sm-6 col-12 d-none d-sm-block">
+                <div class="row">
+                    <div class="col-sm-2 col-2 justify-content-end d-grid">
+                        <img src="{% static '/img/register-2.png' %}" alt="">
+                    </div>
+                    <div class="col-sm-10">
+                        <h1 class="headlineS text-start">
+                            {% translate 'Add minicoders!' %}
+                        </h1>
+                        <p style="margin-bottom: 5%;">{% translate 'Let\'s go!' %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="POST" class="user_form row" id="register-form">
+            {% csrf_token %}
+            <div class="container col-sm-6 col-11">
+                <div class="row justify-content-end">
+                    <div class="col-sm-10">
+                        {% for field in context.userform %}
+                            {% if field != context.userform.role %}
+                            <div class="form-input">
+                                {% if field != context.userform.captcha %}
+                                <span class="icon">
+                                    {% if field == context.userform.name %}
+                                    <img src="{% static '/img/form-user-icon.png' %}">
+                                    {% elif field == context.userform.email %}
+                                    <img src="{% static '/img/form-mail-icon.png' %}">
+                                    {% else %}
+                                    <img src="{% static '/img/form-password-icon.png' %}">
+                                    {% endif %}
+                                </span>
+                                {% endif %}
+                                {{field}}
+                            </div>
+                            {% if field.errors %}
+                            <p class="text-danger text-start">{{ field.errors|striptags }}</p>
+                            {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="container col-sm-6 col-11 jusify-top-sm-10p">
+                <div class="row justify-content-end">
+                    <div class="col-sm-10">
+                        <div class="minicoders-title-mobile">
+                            <h1 class="headlineS text-start">
+                                {% translate 'Add minicoders!' %}
+                            </h1>
+                            <p style="margin-bottom: 5%;">{% translate 'Let\'s go!' %}</p>
+                        </div>
+                        {% if context.minicoder_repeated %}
+                        <p class="text-danger">{% translate 'Minicoder repeated or empty' %}</p>
+                        {% endif %}
+                        {{ context.formset.management_form }}
+                        <div id="new-minicoders-form">
+                            <div id="empty-form" class="form-input">
+                                <span class="icon">
+                                    <img src="{% static '/img/form-user-icon.png' %}">
+                                </span>
+                                {{ context.formset.empty_form }}
+                            </div>
+                            {% for form in context.formset %}
+                                    {{ form.as_p }}
+                            {% endfor %}
+                        </div>
+                        <input type="hidden" name="location_from" value="{{ location }}" />
+
+                        <div class="form-input">
+                            <span class="icon">
+                                <img src="/static/img/form-password-icon.png">
+                            </span>
+                            <input type="text" name="promo_code" class="col-9" aria-describedby="promotional_code" placeholder="{% translate 'Promotional code' %}" id="id_promo_code">
+                            <button type="button" class="btn btn-lg bg-warning buttonL" id="validate_code_button" onclick="validatePromoCode()">{% translate 'Validate code' %}</button>
+                            <p>{% translate 'If the promotional code is not valid, it will not be used in the payment' %}</p>
+                        </div>
+                        <p id="validation-promocode"></p>
+                        {% if promo_code_not_valid %}
+                            <script>
+                                document.getElementById("validation-promocode").textContent = "{% translate 'This promotional code is not valid' %}";
+                                document.getElementById("validation-promocode").style.color="red";
+                            </script>
+                        {% endif %}
+                        <div class="d-flex justify-content-between">
+                            <a type="submit" class="btn btn-lg btn-block py-2 px-3 flex-shrink-1 buttonL" id="back_button"
+                                href="{% url 'backoffice:parental' %}">{% translate 'Back' %}</a>
+                            <button type="submit" class="btn btn-lg btn-block py-2 px-3 w-75 buttonL next_button" >{% translate 'Next' %}</button>
+                        </div>
+
+                        <button type="button" class="py-3" onclick="add_new_minicoder(event,4)" style="color: rgb(253, 105, 6); text-align: start; cursor: pointer;border:none; background: none;"> 
+                            <span>&#43;</span> {% translate 'Add another minicoder' %}
+                        </button>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                            <div class="highlightM fw-normal content3">
+                                {% translate 'By registering for an account, you are agreeing to our' %} 
+                                <a target="_blank" href="{% url 'backoffice:terms' %}" class="orange40 fw-bold">{% translate 'terms of service' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function validatePromoCode(){
+    const promo_code = document.getElementById('id_promo_code').value;
+    document.getElementById('validation-promocode').textContent = "";
+    if(promo_code!==""){
+        $.ajax({
+        type:"POST",
+        url:"{% url 'backoffice:ajax-validate-promocode-on-register' %}",  
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}',
+        promo_code_value: promo_code},
+        success:  function(response){
+            if(response.code_valid !== undefined){
+                if(response.code_valid){
+                    document.getElementById("validation-promocode").textContent ="{% translate 'Your code was successfully validated!' %}";
+                    document.getElementById("validation-promocode").style.color="green";
+                }
+                else if(response.code_valid == false){
+                    document.getElementById("validation-promocode").textContent ="{% translate 'Your code is not valid!' %}";
+                    document.getElementById("validation-promocode").style.color="red";
+                }
+            }
+        }
+    });
+    }
+}
+$('#register-form').on('submit', function() {
+    updateMinicodersForm();
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,181 @@
+{% load i18n %}
+{% load static %}
+
+<div class="row {% if not pay_directly %} pr-pxs-0 {% endif %}">
+    <div class="row userplansRow {% if not pay_directly %} pr-pxs-0 {% endif %}">
+        <div class="container col-12 login_register_container">
+            <div class="row">
+                <div class="col-12 col-sm-1 justify-content-center justify-content-md-end d-sm-grid px-md-0">
+                    <img class="main-plan-step" src="{% static '/img/register-3.png' %}" alt="">
+                </div>
+                <div class="col-sm-11 col-12">
+                    <div class="d-md-flex">
+                        <h1 class="col-5 headlineS fw-normal text-start col-md-4 col-12 main-plan-title">
+                            {% translate 'Please choose your plan' %}
+                        </h1>
+                        <p class="bodyL fs-15{% if pay_directly %} col-md-6 {% else %} col-md-8 {% endif %}">
+                            {% translate 'Choose a plan to get your kids coding.' %}
+                        </p>
+                    </div>
+                    <div class="forms-size row plans-md-size">
+                        <div class="col-12 background-light1 step-plan-card" id="low_plan" onclick=changeSelectPlan(this.id)>
+                            <div class="row d-flex justify-content-between">
+                                <div class="col text-nowrap fs-3">
+                                    {% translate "Silver" %}
+                                </div>
+                                <div class="col d-flex justify-content-end">
+                                    <img src="{% static 'img/silver_diamond.svg' %}">
+                                </div>
+                            </div>
+                            <div class="bodyM plan-price">
+                                <span class="headlineS">{% translate '4.99$' %}</span> / {% translate "month" %}
+                            </div>
+                            <div class="d-flex mb-3">
+                                <div class="col-8 col-lg-9 col-xxl-8 d-flex d-lg-none d-xxl-flex">
+                                    <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little">
+                                    {% translate "For the little ones:" %}
+                                </div>
+                                <div class="col-8 col-lg-9 col-xxl-8 d-none d-lg-block d-xxl-none">
+                                    <div class="d-flex mb-3">
+                                        <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little">
+                                        {% translate "For the little ones:" %}
+                                    </div>
+                                    <div class="d-flex">
+                                        <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little">
+                                        {% translate "For the parents:" %}
+                                    </div>
+                                </div>
+                                <div class="col-1 d-none d-lg-block d-xxl-none"></div>
+                                <div class="col-4 col-lg-2 col-xxl-4 d-flex" style="max-height: 300px;">
+                                    <img class="minicoders-img-responsive" src="{% static 'img/smartphone-1-tiers-website-Minicoders.png' %}" width="120px" height="200px">
+                                </div>
+                            </div>
+                            <div class="d-flex d-lg-none d-xxl-flex">
+                                <div class="col-8 d-flex">
+                                    <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little">
+                                    {% translate "For the parents:" %}
+                                </div>
+                                <div class="col-4 d-flex justify-content-center pt-5">
+                                    <img class="minicoders-img-responsive max-w-80 max-h-80" src="{% static 'img/control-parental-Minicoders 1.png' %}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 background-light1 step-plan-card selected-plan" id="normal_plan" onclick=changeSelectPlan(this.id)>
+                            <div class="row d-flex justify-content-between">
+                                <div class="col text-nowrap fs-3">
+                                    {% translate "Gold" %}
+                                </div>
+                                <div class="col d-flex justify-content-end">
+                                    <img src="{% static 'img/gold_diamond.svg' %}">
+                                </div>
+                            </div>
+                            <div class="bodyM plan-price">
+                                <span class="headlineS">{% translate '12.69$' %}</span> / {% translate "month" %}
+                            </div>
+                            <div class="d-flex mb-3">
+                                <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little">
+                                {% translate "Every Silver benefit:" %}
+                            </div>
+                            <div class="d-flex mb-3">
+                                <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little">
+                                {% translate "Voice enabled Virtual Assistant chat" %}
+                            </div>
+                            <div class="d-flex d-md-none d-xxl-flex mb-3">
+                                <div class="col-2 d-flex justify-content-center pt-55p">
+                                    <img class="pl-5 minicoders-img-responsive max-w-60 max-h-60" style="transform: rotate(270deg)" src="{% static 'img/orange-arrow-down.svg' %}">
+                                </div>
+                                <div class="col-5 d-flex justify-content-center">
+                                    <img class="minicoders-img-responsive" src="{% static 'img/smartphone-1-tiers-website-Minicoders.png' %}" width="120px" height="200px">
+                                </div>
+                                <div class="col-5 d-flex justify-content-center">
+                                    <img class="minicoders-img-responsive" src="{% static 'img/smartphone-3-tiers-website-Minicoders.png' %}" width="120px" height="200px">
+                                </div>
+                            </div>
+                            <div class="d-none d-md-flex d-xxl-none mb-3 justify-content-center" style="max-height: 300px;">
+                                <div class="col-8 col-md-6 d-flex justify-content-center">
+                                    <div class="col-2 d-flex align-items-end">
+                                        <img class="pl-5 minicoders-img-responsive max-w-60 max-h-60" style="transform: rotate(270deg)" src="{% static 'img/orange-arrow-down.svg' %}">
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <img class="minicoders-img-responsive" src="{% static 'img/smartphone-1-tiers-website-Minicoders.png' %}" width="120px" height="200px">
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <img class="minicoders-img-responsive" src="{% static 'img/smartphone-3-tiers-website-Minicoders.png' %}" width="120px" height="200px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 background-light1 step-plan-card" id="high_plan" onclick=changeSelectPlan(this.id)>
+                            <div class="row d-flex justify-content-between">
+                                <div class="col text-nowrap fs-3">
+                                    {% translate "Platinum" %}
+                                </div>
+                                <div class="col d-flex justify-content-end">
+                                    <img src="{% static 'img/platinum_diamond.svg' %}">
+                                </div>
+                            </div>
+                            <div class="bodyM plan-price">
+                                <span class="headlineS">{% translate '35.55$' %}</span> / {% translate "month" %}
+                            </div>
+                            <div class="d-flex mb-3">
+                                <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little">
+                                {% translate "Every Gold benefit:" %}
+                            </div>
+                            <div class="d-flex mb-3">
+                                <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little">
+                                {% translate "Interaction with an in-game personal tutor" %}
+                            </div>
+                            <div class="d-flex">
+                                <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little">
+                                {% translate "Access to the Platinum Private Roblox Server." %}
+                            </div>
+                            <div class="d-flex d-md-none d-xxl-flex">
+                                <div class="col d-flex justify-content-center">
+                                    <img class="minicoders-img-responsive" src="{% static 'img/Lap-top-Tiers-website-Minicoders 1.png' %}">
+                                </div>
+                            </div>
+                            <div class="d-none d-md-flex d-xxl-none justify-content-center" style="max-height: 300px;">
+                                <div class="col-9 col-md-7 d-flex justify-content-center">
+                                    <div class="d-flex justify-content-center">
+                                        <img class="minicoders-img-responsive" src="{% static 'img/Lap-top-Tiers-website-Minicoders 1.png' %}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if promo_code_value and promo_code_value != "" %}
+                            <p class="bodyL" id="showReferralCode">
+                                {% translate 'Your referral code ' %}
+                                {{ promo_code_value }}
+                                {% translate ' comes with a one-month free promotion. Your subscription will not be charged until the 2nd month.' %}
+                            </p>
+                        {% else %}
+                        <p class="bodyL" id="showReferralCode">
+                        </p>
+                        {% endif %}
+                       
+                        {% if pay_directly %}
+                        <form action="/api/payments/stripe/create_session" method="POST" id="subscription_form">
+                            {% csrf_token %}
+                            <input type="hidden" name="price_id" id="plan_price" value="normal_plan" />
+                            <input type="hidden" name="subs_quantity" value="{{ subs_number }}" />
+                            <input type="hidden" name="minicoder_name" value="{{ minicoder_n }}" />
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row d-flex justify-content-end background-light1 mt-3 pt-3 px-md-5" style="height: 100px;">
+            <a type="submit" class="btn btn-lg btn-block py-2 px-3 flex-shrink-1 buttonL h-65p col-3 col-md-1 text-center w-auto" id="back_button"
+            href="{% url 'backoffice:parental' %}">{% translate 'Back' %}</a>
+            {% if pay_directly %}
+            <button type="submit" class="btn btn-lg btn-block py-2 mx-4 w-18 h-65p col-4 col-md-2 text-center next_button w-auto" 
+                onclick=paySubscription()>{% translate 'Next' %}</button>
+            {% else %}
+            <button type="submit" class="btn btn-lg btn-block py-2 mx-4 w-18 h-65p col-4 col-md-2 text-center next_button w-auto" 
+                onclick="validateMinicodersAndSelectPlan('{{ location }}')">{% translate 'Next' %}</button>
+            {% endif %}
+    </div>
+</div>

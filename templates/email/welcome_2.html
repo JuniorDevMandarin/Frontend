@@ -1,0 +1,52 @@
+{% load i18n %}
+{% load static %}
+
+{% language main_lang %}
+    {% get_current_language as LANGUAGE_CODE %}
+
+    <div style="text-align: center;">
+        <img style="width: 700px;height: 175px;" src="https://s3.amazonaws.com/public.minicoders.com/minicoders-email.png" alt="">
+    </div>
+    <p style="text-align: center;">{{ user.name }}, {% translate 'welcome to the community' %}!</p>
+
+    <p>{% translate 'Thank you for subscribing to Minicoders' %}!</p>
+    <p>{% translate 'To get the learning journey started there are some simple steps we need you to follow:' %}</p>
+
+    <ul>
+        <li>1. {% translate 'Download the Minicoders Kids App (available in iOS and Android)' %} <a href="https://onelink.to/cq5dr4">{% translate 'here' %}</a> {% translate 'and use the quicklogin code you’ll find in' %} <a href="https://www.minicoders.com/parental">https://www.minicoders.com/parental</a> {% translate 'to log in' %}</li>
+        <br>
+        <li>2. {% translate 'Have your little one request ' %} <a href="https://www.roblox.com/groups/12929013/minicoders21#!/about">Minicoders21</a> {% translate 'Private Group in Roblox,' %} <a href="https://www.roblox.com/">https://www.roblox.com/</a></li>
+        <br>
+        <li>3. {% translate 'To link your Parental Area with their Roblox account,' %} <a href="https://www.minicoders.com/parental">{% translate 'Parental Area' %}</a></li>
+    </ul>
+    
+    <div>
+        {% translate 'Here’s the link to' %} <a href="https://www.roblox.com/games/8016590598/Magic-School-m21#!/about">Magic School</a>:
+        <br>
+        <a href="https://www.roblox.com/games/8016590598/Magic-School-m21">https://www.roblox.com/games/8016590598/Magic-School-m21</a>
+    </div>
+
+    <div>
+        {% translate 'And here’s' %} <a href="https://www.roblox.com/games/11302011686/Mars-Mission-m21">Mars Mission</a>:
+        <br>
+        <a href="https://www.roblox.com/games/11302011686/Mars-Mission-m21">https://www.roblox.com/games/11302011686/Mars-Mission-m21</a>
+    </div>
+
+    <p>{% translate 'Once this is done, your kid’s profile will be linked to your Parental Area, so you’ll be able to keep track of all of their achievements' %}</p>
+    
+    <p>{% translate 'Remember that with your subscription plan, on top of the educational videos, you can also find our Virtual Assistant within the App, go say hello' %}</p>
+
+    <div>
+        {% translate 'Do not hesitate to reach out if you have any questions' %},
+        <br>
+        {% translate 'for any inquiries you can contact us through ' %}<a href="mailto:client-support@minicoders.com">client-support@minicoders.com</a>
+    </div>
+
+    <br>
+    <br>
+    <div>
+        {% translate 'All the best' %},
+        <br>
+        {% translate 'The Minicoders Client Support Team' %}
+    </div>
+{% endlanguage %}

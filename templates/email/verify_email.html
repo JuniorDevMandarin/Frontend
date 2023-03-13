@@ -1,0 +1,31 @@
+{% load i18n %}
+{% load static %}
+
+{% language main_lang %}
+    {% get_current_language as LANGUAGE_CODE %}
+
+    <div style="text-align: center;">
+        <img style="width: 700px;height: 175px;" src="https://s3.amazonaws.com/public.minicoders.com/minicoders-email.png" alt="">
+    </div>
+    <p style="text-align: center;">{% translate 'Welcome to Minicoders' %}!</p>
+
+    <p>{% translate 'Hello' %} {{ user.name }},</p>
+
+    <p>{% translate 'Thank you for registering a Minicoders account' %}!</p>
+
+    <p>{% translate 'In order to proceed with your registration, we need you to verify your email address by clicking' %} <a href="{{ verify_email_url }}"> {% translate 'here' %}</a>, {% translate ' or copying and pasting the following link in your browser: ' %} {{ verify_email_url }}</p>
+
+    <div>
+        {% translate 'Do not hesitate reach out with any questions. ' %}
+        <br>
+        {% translate 'Contact us through '%}<a href="mailto:client-support@minicoders.com">client-support@minicoders.com</a>
+    </div>
+    
+    <br>
+    <br>
+    <div>
+        {% translate 'Best Regards' %},
+        <br>
+        {% translate 'The Minicoders Client Support Team' %}
+    </div>
+{% endlanguage %}

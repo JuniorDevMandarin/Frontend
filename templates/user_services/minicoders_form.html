@@ -1,0 +1,88 @@
+{% load i18n %}
+{% load static %}
+
+<div class="row" id="minicodersFormMain">
+    <div class="col-sm-2 justify-content-start justify-content-sm-end d-grid">
+        <img src="{% static '/img/register-2.png' %}" alt="">
+    </div>
+    <div class="col-sm-10">
+        <h1 class="headlineS text-start">
+        {% translate 'Add minicoders!' %}
+        </h1>
+        <p style="margin-bottom: 5%;">{% translate 'Let\'s go!' %}</p>
+        <div class="forms-size">
+            <form method="POST" action="{% url 'backoffice:add-minicoders' %}" class="user_form" id="minicoders_form" name="minicoder-form-n">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                <div id="new-minicoders-form">
+                    <div id="empty-form" class="form-input">
+                        <span class="icon">
+                            <img src="{% static '/img/form-user-icon.png' %}">
+                        </span>
+                        {{ formset.empty_form }}
+                    </div>
+                    {% for form in formset %}
+                            {{ form.as_p }}
+                    {% endfor %}
+                </div>
+                {% if minicoder_not_valid %}
+                    {% if minicoder_repeated %}
+                        <p class="text-danger">{% translate 'Minicoder repeated' %}</p>
+                    {% else %}
+                        <p class="text-danger">{% translate 'Minicoder' %}{{ minicoder_not_valid }} {% translate 'already has a valid subscription' %}</p>
+                    {% endif %}
+                {% endif %}
+                <input type="hidden" name="location_from" value="{{ location }}" />
+                <input type="hidden" name="price_id" id="plan_price" value="{% if hide_actions %}normal_plan{% endif %}"  />
+            </form>
+
+            <input type="hidden" name="promo_code" class="col-9" aria-describedby="promotional_code" placeholder="{% translate 'Promotional code' %}" id="id_promo_code">
+            {% if location %}
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-lg btn-block py-2 px-3 w-75 buttonL next_button"
+                        onclick=validateMinicodersAndSelectPlan()>{% translate 'Next' %}</button>
+                </div>
+            {% else %}
+                {% if not hide_actions %}
+                <div class="d-flex justify-content-between">
+                    <a type="submit" class="btn btn-lg btn-block py-2 px-3 flex-shrink-1 buttonL" id="back_button"
+                        href="{% url 'backoffice:parental' %}">{% translate 'Back' %}</a>
+                    <button type="submit" class="btn btn-lg btn-block py-2 px-3 w-75 buttonL next_button"
+                        onclick="validateMinicodersAndSelectPlan('{{ location }}')">{% translate 'Next' %}</button>
+                </div>
+                {% endif %}
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    function validatePromoCode(){
+    const promo_code = document.getElementById('id_promo_code').value;
+    document.getElementById('validation-promocode').textContent = "";
+    if(promo_code!==""){
+        $.ajax({
+        type:"POST",
+        url:"{% url 'backoffice:ajax-validate-promocode' %}",  
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}',
+        promo_code_value: promo_code},
+        success:  function(response){
+            if(response.code_valid !== undefined){
+                if(response.code_valid){
+                    document.getElementById("validation-promocode").textContent ="{% translate 'Your code was successfully validated!' %}";
+                    document.getElementById("validation-promocode").style.color="green";
+                    document.getElementById("showReferralCode").textContent="{% translate 'Your referral code ' %}"+ promo_code +"{% translate ' comes with a one-month free promotion. Your subscription will not be charged until the 2nd month.' %}"   
+                    document.getElementById("showReferralCode").style.display = "block";
+                }
+                else if(response.code_valid == false){
+                    document.getElementById("validation-promocode").textContent ="{% translate 'Your code is not valid!' %}";
+                    document.getElementById("validation-promocode").style.color="red";
+                    document.getElementById("showReferralCode").style.display = "none";
+                }
+            }
+        }
+    });
+    }
+}
+</script>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 col-12 d-none d-md-block login-bg" style="background-image: url({% static '/img/register-bg.png' %});">
+    </div>
+    <div class="col-md-8 col-12 py-5 row align-content-center background-light1 userplansRow">
+        <div class="container col-12 col-md-7">
+            <div class="row">
+                <div class="forms-size w-100 h-auto text-center payment-message">
+                    {% translate "Something went wrong or the process has been cancelled." %}
+                </div>
+                <div class="col-xs-12 col-lg-5 payment-control-buttons mt-5 text-md-end text-center">
+                    <a href="{% url 'backoffice:home' %}" class="buttonL content1 content1 surface-light button-middle">{% translate "Go home" %}</a>
+                </div>
+                <div class="col-xs-12 col-lg-7 payment-control-buttons mt-5 text-md-start text-center">
+                    <a href="{% url 'backoffice:parental' %}" class="buttonL content1 text-white accent-dark button-middle">{% translate "Go to Area parental" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

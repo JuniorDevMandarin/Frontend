@@ -1,0 +1,248 @@
+{% load i18n %}
+{% load static %}
+
+<div class="row my-4">
+    <div class="col-12 col-md-6">
+        <div class="d-flex align-items-center">
+            <div class="px-3 py-2" style="border: 2px solid #21222D;">1</div>
+            <div class="text-title-progress" style="margin-left: 5%;">{% translate "Programs & Commands" %}</div>
+            {% if minicoder.concept_1 == 100 %}
+                <span style="margin-left: 5%;color: #00875A;">{% translate "Complete!" %}</span>
+            {% endif %}
+        </div>
+        <p class="bodyL mt-5">{% translate "Los programas son un conjunto de instrucciones que consiten en código compilado y son ejecutados directamente de la sede del sistema operativo del dispositivo; el dispositivo puede ser una computadora, un teléfono móvil, una tablet, por mencionar algunos. Los comandos son las intrucciones dadas por el programador al dispositivo para que realice una tarea específica. La consola es el programa que ejecuta la interfaz de línea de comandos." %}</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-12 col-md-5">
+        <div class="d-flex">
+            <div class="col-6 color-F06814">{% translate "Progress" %}</div>
+            <div class="col-6 text-title-progress color-F06814 text-end">{{  minicoder.concept_1 }}%</div>
+        </div>
+        <div class="d-flex w-100 justify-content-center mt-4">
+            <div class="box-level-first{% if minicoder.concept_1 >= 10 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_1 >= 20 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_1 >= 30 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_1 >= 40 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_1 >= 50 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_1 >= 60 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_1 >= 70 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_1 >= 80 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_1 >= 90 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level-last d-flex justify-content-center align-items-center{% if minicoder.concept_1 == 100 %} bg-FCD4B8 {% endif %}">
+                {% if minicoder.concept_1 == 100 %}
+                <img src="{% static 'img/orange-tick.svg' %}" width="30">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row my-4">
+    <div class="col-12 col-md-6">
+        <div class="d-flex align-items-center">
+            <div class="px-3 py-2" style="border: 2px solid #21222D;">2</div>
+            <div class="text-title-progress" style="margin-left: 5%;">{% translate "Loops" %}</div>
+            {% if minicoder.concept_2 == 100 %}
+                <span style="margin-left: 5%;color: #00875A;">{% translate "Complete!" %}</span>
+            {% endif %}
+        </div>
+        <p class="bodyL mt-5">{% translate "Un Loop, traducido en español como bucle o ciclo, es una secuencia de instrucciones de código que se ejecuta repetidas veces. La repetición se mantiene hasta que la condición que se le asigna al bucle ya no se cumple. La programación requiere muchas veces la ejecución repetida de una serie de instrucciones, si se escriben de nuevo dentro del código se incrementaría su extensión, dicultando su entendimiento y modificación ." %}</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-12 col-md-5">
+        <div class="d-flex">
+            <div class="col-6 color-F06814">{% translate "Progress" %}</div>
+            <div class="col-6 text-title-progress color-F06814 text-end">{{  minicoder.concept_2 }}%</div>
+        </div>
+        <div class="d-flex w-100 justify-content-center mt-4">
+            <div class="box-level-first{% if minicoder.concept_2 >= 10 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_2 >= 20 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_2 >= 30 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_2 >= 40 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_2 >= 50 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_2 >= 60 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_2 >= 70 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_2 >= 80 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_2 >= 90 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level-last d-flex justify-content-center align-items-center{% if minicoder.concept_2 == 100 %} bg-FCD4B8 {% endif %}">
+                {% if minicoder.concept_2 == 100 %}
+                <img src="{% static 'img/orange-tick.svg' %}" width="30">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row my-4">
+    <div class="col-12 col-md-6">
+        <div class="d-flex align-items-center">
+            <div class="px-3 py-2" style="border: 2px solid #21222D;">3</div>
+            <div class="text-title-progress" style="margin-left: 5%;">{% translate "Procedures" %}</div>
+            {% if minicoder.concept_3 == 100 %}
+                <span style="margin-left: 5%;color: #00875A;">{% translate "Complete!" %}</span>
+            {% endif %}
+        </div>
+        <p class="bodyL mt-5">{% translate "Los procedimientos son subprogramas que realizan tareas específicas. Conocidos también como rutinas o subrutinas, se les utiliza en el programa principal el número de veces que se requiera. Pueden almacenarse independientemente en librerías o unidades. Los procedimientos ayudan a evitar la repetición de bloques de instrucciones dentro del programa principal, por lo que se facilita su modificación, además cada programador puede crear sus propios procedimientos. " %}</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-12 col-md-5">
+        <div class="d-flex">
+            <div class="col-6 color-F06814">{% translate "Progress" %}</div>
+            <div class="col-6 text-title-progress color-F06814 text-end">{{  minicoder.concept_3 }}%</div>
+        </div>
+        <div class="d-flex w-100 justify-content-center mt-4">
+            <div class="box-level-first{% if minicoder.concept_3 >= 10 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_3 >= 20 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_3 >= 30 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_3 >= 40 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_3 >= 50 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_3 >= 60 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_3 >= 70 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_3 >= 80 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_3 >= 90 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level-last d-flex justify-content-center align-items-center{% if minicoder.concept_3 == 100 %} bg-FCD4B8 {% endif %}">
+                {% if minicoder.concept_3 == 100 %}
+                <img src="{% static 'img/orange-tick.svg' %}" width="30">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row my-4">
+    <div class="col-12 col-md-6">
+        <div class="d-flex align-items-center">
+            <div class="px-3 py-2" style="border: 2px solid #21222D;">4</div>
+            <div class="text-title-progress" style="margin-left: 5%;">{% translate "Conditionals" %}</div>
+            {% if minicoder.concept_4 == 100 %}
+                <span style="margin-left: 5%;color: #00875A;">{% translate "Complete!" %}</span>
+            {% endif %}
+        </div>
+        <p class="bodyL mt-5">{% translate "El condicional IF evalúa si la operación lógica, es decir, una expresión condicional, es verdadera o falsa. De ser verdadera, ejecutará el conjunto de instrucciones de la expresión condicional, pero si es falsa, no se ejecutará. Los condicionales son extremadamente útiles pues permiten definirle al software diferentes vías de ejecución, de esta manera se contemplan diferentes posibilidades y el programa queda ajustado a todas ellas. " %}</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-12 col-md-5">
+        <div class="d-flex">
+            <div class="col-6 color-F06814">{% translate "Progress" %}</div>
+            <div class="col-6 text-title-progress color-F06814 text-end">{{  minicoder.concept_4 }}%</div>
+        </div>
+        <div class="d-flex w-100 justify-content-center mt-4">
+            <div class="box-level-first{% if minicoder.concept_4 >= 10 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_4 >= 20 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_4 >= 30 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_4 >= 40 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_4 >= 50 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_4 >= 60 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_4 >= 70 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_4 >= 80 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_4 >= 90 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level-last d-flex justify-content-center align-items-center{% if minicoder.concept_4 == 100 %} bg-FCD4B8 {% endif %}">
+                {% if minicoder.concept_4 == 100 %}
+                <img src="{% static 'img/orange-tick.svg' %}" width="30">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row my-4">
+    <div class="col-12 col-md-6">
+        <div class="d-flex align-items-center">
+            <div class="px-3 py-2" style="border: 2px solid #21222D;">5</div>
+            <div class="text-title-progress" style="margin-left: 5%;">{% translate "Logical Operators" %}</div>
+            {% if minicoder.concept_5 == 100 %}
+                <span style="margin-left: 5%;color: #00875A;">{% translate "Complete!" %}</span>
+            {% endif %}
+        </div>
+        <p class="bodyL mt-5">{% translate "Los operadores lógicos se usan para combinar dos valores booleanos, es decir, dos expresiones condicionales cuyo valor puede ser falso o verdadero. Los operados lógicos que se utilizan son el AND y el OR. Para el operador lógico AND ambas expresiones deben de ser verdaderas para que se ejecute el conjunto de instrucciones determinado, mientras que para el operador lógico OR solamente debe ser verdadera una de las expresiones. " %}</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-12 col-md-5">
+        <div class="d-flex">
+            <div class="col-6 color-F06814">{% translate "Progress" %}</div>
+            <div class="col-6 text-title-progress color-F06814 text-end">{{  minicoder.concept_5 }}%</div>
+        </div>
+        <div class="d-flex w-100 justify-content-center mt-4">
+            <div class="box-level-first{% if minicoder.concept_5 >= 10 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_5 >= 20 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_5 >= 30 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_5 >= 40 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_5 >= 50 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_5 >= 60 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_5 >= 70 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_5 >= 80 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_5 >= 90 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level-last d-flex justify-content-center align-items-center{% if minicoder.concept_5 == 100 %} bg-FCD4B8 {% endif %}">
+                {% if minicoder.concept_5 == 100 %}
+                <img src="{% static 'img/orange-tick.svg' %}" width="30">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row my-4">
+    <div class="col-12 col-md-6">
+        <div class="d-flex align-items-center">
+            <div class="px-3 py-2" style="border: 2px solid #21222D;">6</div>
+            <div class="text-title-progress" style="margin-left: 5%;">{% translate "Threads of parallel execution" %}</div>
+            {% if minicoder.concept_6 == 100 %}
+                <span style="margin-left: 5%;color: #00875A;">{% translate "Complete!" %}</span>
+            {% endif %}
+        </div>
+        <p class="bodyL mt-5">{% translate "Los hilos de ejecución son conjuntos de intrucciones que se pueden ejecutar al mismo tiempo que otro conjunto de instrucciones. Esta técnica permite simplicar el diseño del programa que debe llevar a cabo distintas funciones al mismo tiempo. En todos los sistemas de hoy en día los hilos son utilizados para simplificar la estructura de un programa que lleva a cabo diferentes funciones.             " %}</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-12 col-md-5">
+        <div class="d-flex">
+            <div class="col-6 color-F06814">{% translate "Progress" %}</div>
+            <div class="col-6 text-title-progress color-F06814 text-end">{{  minicoder.concept_6 }}%</div>
+        </div>
+        <div class="d-flex w-100 justify-content-center mt-4">
+            <div class="box-level-first{% if minicoder.concept_6 >= 10 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_6 >= 20 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_6 >= 30 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_6 >= 40 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_6 >= 50 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_6 >= 60 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_6 >= 70 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_6 >= 80 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_6 >= 90 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level-last d-flex justify-content-center align-items-center{% if minicoder.concept_6 == 100 %} bg-FCD4B8 {% endif %}">
+                {% if minicoder.concept_6 == 100 %}
+                <img src="{% static 'img/orange-tick.svg' %}" width="30">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row my-4">
+    <div class="col-12 col-md-6">
+        <div class="d-flex align-items-center">
+            <div class="px-3 py-2" style="border: 2px solid #21222D;">7</div>
+            <div class="text-title-progress" style="margin-left: 5%;">{% translate "Infinite Loops" %}</div>
+            {% if minicoder.concept_7 == 100 %}
+                <span style="margin-left: 5%;color: #00875A;">{% translate "Complete!" %}</span>
+            {% endif %}
+        </div>
+        <p class="bodyL mt-5">{% translate "Un Loop infinito, llamado también ciclo o bucle infinito, es una situación en la que se repiten indefinidamente las instrucciones de código, ya que su condición para finalizar nunca se cumple. " %}</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-12 col-md-5">
+        <div class="d-flex">
+            <div class="col-6 color-F06814">{% translate "Progress" %}</div>
+            <div class="col-6 text-title-progress color-F06814 text-end">{{  minicoder.concept_7 }}%</div>
+        </div>
+        <div class="d-flex w-100 justify-content-center mt-4">
+            <div class="box-level-first{% if minicoder.concept_7 >= 10 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_7 >= 20 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_7 >= 30 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_7 >= 40 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_7 >= 50 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_7 >= 60 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_7 >= 70 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_7 >= 80 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level{% if minicoder.concept_7 >= 90 %} bg-FCD4B8 {% endif %}"></div>
+            <div class="box-level-last d-flex justify-content-center align-items-center{% if minicoder.concept_7 == 100 %} bg-FCD4B8 {% endif %}">
+                {% if minicoder.concept_7 == 100 %}
+                <img src="{% static 'img/orange-tick.svg' %}" width="30">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

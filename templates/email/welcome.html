@@ -1,0 +1,39 @@
+{% load i18n %}
+{% load static %}
+
+{% language main_lang %}
+    {% get_current_language as LANGUAGE_CODE %}
+    
+    <div style="text-align: center;">
+        <img style="width: 700px;height: 175px;" src="https://s3.amazonaws.com/public.minicoders.com/minicoders-email.png" alt="">
+    </div>
+    <p style="text-align: center;">{% translate 'You’re almost there' %}!</p>
+
+    <p>{% translate 'Hello' %} {{ user }},</p>
+
+    <p>{% translate 'Thank you for registering and welcome to Minicoders' %}!</p>
+
+    <p>{% translate 'You are just one step away from the Play-to-Learn Minicoders experience.' %}</p>
+
+    <p><strong>{% translate 'Now it is time to subscribe your kid(s)' %}!</strong></p>
+
+    <p>{% translate 'Minicoders offers a learning platform where children learn Coding Skills while having fun with incredible Roblox (more platforms to come) in-game based experiences. With the subscription you will gain access to' %}:</p>
+
+    <ul>
+        <li>{% translate 'iOS and Android educational APPs' %}</li>
+        <li>{% translate 'Parental control website' %} </li>
+        <li>{% translate 'Virtual Assistance' %}</li>
+        <li>{% translate 'And much more…' %}</li>
+    </ul>
+
+    <p>{% translate 'For more information about your subscription plans visit ' %}<a href="https://minicoders.com/plans">https://minicoders.com/plans</a></p> 
+    <p>{% translate 'And for any inquiries you can reach us through ' %}<a href="mailto:client-support@minicoders.com">client-support@minicoders.com</a></p>
+
+    <br>
+    <br>
+    <div>
+        {% translate 'Hope to hear from you soon' %}, 
+        <br>
+        {% translate 'The Minicoders Client Support Team' %}
+    </div>
+{% endlanguage %}

@@ -1,0 +1,145 @@
+{% load i18n %}
+{% load static %}
+
+<div class="row {% if not pay_directly %} pr-pxs-0 {% endif %}">
+    <div class="row userplansRow {% if not pay_directly %} pr-pxs-0 {% endif %}">
+        <div class="container col-12 login_register_container">
+            <div class="row">
+                <div class="col-12 col-sm-1 justify-content-center justify-content-md-end d-sm-grid px-md-0">
+                    <img class="main-plan-step" src="{% static '/img/register-3.png' %}" alt="">
+                </div>
+                <div class="col-sm-11 col-12">
+                    <div class="d-md-flex">
+                        <h1 class="col-5 headlineS fw-normal text-start col-md-4 col-12 main-plan-title">
+                            {% translate 'Choose your plan' %}
+                        </h1>
+                        <p class="bodyL fs-15{% if pay_directly %} col-md-6 {% else %} col-md-8 {% endif %}">
+                            {% translate 'Choose a plan to get your kids coding.' %}
+                        </p>
+                    </div>
+                    <div class="forms-size row plans-md-size width-95 mt-5">
+                        <div class="col-12 background-light1 step-plan-card" id="low_plan" onclick=changeSelectPlan(this.id)>
+                            <div class="row d-flex justify-content-between">
+                                <div class="col text-nowrap fs-3 plan-title-color">
+                                    {% translate "Quarterly" %}
+                                </div>
+                            </div>
+                            <div class="bodyM plan-price text-center mt-3">
+                                <span class="headlineS">{% translate '$19.99' %}</span><span class="headlineXS"> /{% translate "month" %}</span>
+                                <br>
+                                <p class="mt-2">{% translate 'Billed Quarterly($59)' %}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 background-light1 step-plan-card selected-plan" id="normal_plan" onclick=changeSelectPlan(this.id)>
+                            <div class="row d-flex justify-content-between">
+                                <div class="col text-nowrap fs-3 plan-title-color">
+                                    {% translate "Yearly" %}
+                                </div>
+                            </div>
+                            <div class="bodyM plan-price text-center mt-3">
+                                <span class="headlineS">{% translate '$12.46' %}</span><span class="headlineXS"> /{% translate "month" %}</span>
+                                <br>
+                                <p class="mt-2">{% translate 'Billed Annually($149)' %}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 background-light1 step-plan-card" id="high_plan" onclick=changeSelectPlan(this.id)>
+                            <div class="row d-flex justify-content-between">
+                                <div class="col text-nowrap fs-3 plan-title-color">
+                                    {% translate "Lifetime" %}
+                                </div>
+                            </div>
+                            <div class="bodyM plan-price text-center mt-3">
+                                <span class="headlineS">{% translate '$349' %}</span>
+                                <br>
+                                <p class="mt-2">{% translate 'One payment' %}</p>
+                            </div>
+                        </div>
+                        
+                        {% if promo_code_value and promo_code_value != "" %}
+                            <p class="bodyL" id="showReferralCode">
+                                {% translate 'Your referral code ' %}
+                                {{ promo_code_value }}
+                                {% translate ' comes with a one-month free promotion. Your subscription will not be charged until the 2nd month.' %}
+                            </p>
+                        {% else %}
+                        <p class="bodyL" id="showReferralCode">
+                        </p>
+                        {% endif %}
+                       
+                        {% if pay_directly %}
+                        <form action="/api/payments/stripe/create_session" method="POST" id="subscription_form">
+                            {% csrf_token %}
+                            <input type="hidden" name="price_id" id="plan_price" value="normal_plan" />
+                            <input type="hidden" name="subs_quantity" value="{{ subs_number }}" />
+                            <input type="hidden" name="minicoder_name" value="{{ minicoder_n }}" />
+                        </form>
+                        {% endif %}
+                    </div>
+                    <div class="background-light1 general-plan-info width-95 mt-4">
+                        <div class="row">
+                            <div class="headlineXS col-6 col-sm-4 col-lg-3 col-xxl-2 pl-20">
+                                {% translate 'All of our plans include:' %}
+                            </div>
+                            <div class="d-none d-sm-block col-4 col-md-6 col-lg-7 col-xxl-8"></div>
+                            <div class="col-6 col-sm-4 col-4 col-md-2 d-flex justify-content-end">
+                                <img class="minicoders-img-responsive max-w-80 max-h-80" src="{% static 'img/control-parental-Minicoders 1.png' %}">
+                            </div>
+                        </div>
+                        <div class="row mt-3 mx-xxxl-10">
+                            <div class="col-12 col-lg-6">
+                                <div class="d-flex mb-3 ms-3 min-height-120 pb-3">
+                                    <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little me-3">
+                                    <div>
+                                        <b>{% translate "Access to the Private Educational Game Experiences" %}</b>
+                                        <br>
+                                        {% translate "Full access to our Play-to-Learn experiences." %}
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3 ms-3 min-height-120 pb-3">
+                                    <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little me-3">
+                                    <div>
+                                        <b>{% translate "The Minicoders kids Companion App" %}</b>
+                                        <br>
+                                        {% translate "The Minicoders kids Companion App An educational video tutorial guide that show kids all what they need to complete the in game challenges to consolidate learning." %}
+                                    </div>
+                                    <img class="minicoders-img-responsive img-display-390" src="{% static 'img/smartphone-1-tiers-website-Minicoders.png' %}" style="max-width: 60px;max-height: 100px;">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="d-flex mb-3 ms-3 min-height-120 pb-3">
+                                    <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little me-3">
+                                    <div>
+                                        <b>{% translate "Parental Area" %}</b>
+                                        <br>
+                                        {% translate "Parental Area Website for Parents to track your children’s learning progress, and other details such as coding concepts learned and collaboration level." %}
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3 ms-3 min-height-120 pb-3">
+                                    <img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little me-3">
+                                    <div>
+                                        <b>{% translate "Virtual Assistance" %}</b>
+                                        <br>
+                                        {% translate "Virtual Assistance Voice-enabled Virtual Assistant chat bot to provide kids with the answers they need in real time." %}
+                                    </div>
+                                    <img class="minicoders-img-responsive img-display-390" src="{% static 'img/virtual-assistance.png' %}" style="max-width: 100px;max-height: 120px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row d-flex justify-content-end background-light1 mt-3 pt-3 px-md-5" style="height: 100px;">
+            <a type="submit" class="btn btn-lg btn-block py-2 px-3 flex-shrink-1 buttonL h-65p col-3 col-md-1 text-center w-auto" id="back_button"
+            href="{% url 'backoffice:parental' %}">{% translate 'Back' %}</a>
+            {% if pay_directly %}
+            <button type="submit" class="btn btn-lg btn-block py-2 mx-4 w-18 h-65p col-4 col-md-2 text-center next_button w-auto" 
+                onclick=paySubscription()>{% translate 'Next' %}</button>
+            {% else %}
+            <button type="submit" class="btn btn-lg btn-block py-2 mx-4 w-18 h-65p col-4 col-md-2 text-center next_button w-auto" 
+                onclick="validateMinicodersAndSelectPlan('{{ location }}')">{% translate 'Next' %}</button>
+            {% endif %}
+    </div>
+</div>

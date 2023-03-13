@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-6 col-12 d-none d-md-block login-bg" style="background-image: url({% static '/img/login-bg.png' %});">
+    </div>
+    <div id="loginForm" class="col-md-6 col-12 py-5 row align-content-center background-light1">
+        <div class="container col-sm-7 col-11">
+            <h1 class="headlineM">
+                {% translate 'Sign in' %}
+            </h1>
+            <p class="highlightL fw-normal mb-5 text-center">
+                {% translate 'Need a minicoders account?' %} 
+                <a href="{% url 'backoffice:register' %}" class="orange40 highlightL">{% translate 'Create an account' %}</a>
+            </p>
+            <button id="google-button">
+                <a class="form-icon w-100 h-100 d-flex justify-content-between" style="background-color: transparent;" href="{% url 'api:social_login:begin' 'google-oauth2' %}" role="button">
+                    <img width="20px" class="google-icon" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    <div class="google-text">{% translate 'Sign in with Google' %}</div>
+                </a>
+            </button>
+            <div style="border-bottom: 1px solid; margin-bottom: 5%; border-color: #E5E0D9;"></div>
+            <form method="POST" class="user_form">
+                {% csrf_token %}
+                <div class="form-input">
+                    <input class="bodyL" type="text" name="email" aria-describedby="emailHelp" placeholder="{% translate 'Email Address' %}">
+                    <span class="icon">
+                        <img src="{% static '/img/form-mail-icon.png' %}">
+                    </span>
+                </div>
+                <div class="form-input">
+                    <input class="bodyL" type="password" name="password" aria-describedby="àsswordHelp" placeholder="{% translate 'Password' %}">
+                    <span class="icon">
+                        <img src="{% static '/img/form-password-icon.png' %}">
+                    </span>
+                </div>
+                {% if context.message %}
+                   <p class="text-danger text-start">{{context.message}}</p>
+                {% endif %}
+                <button type="submit" class="btn btn-lg btn-block button-large" id="login_button">{% translate 'Iniciar sesión' %}</button>
+            </form>
+            <div class="w-100 text-center">
+                <div href="#" class="buttonL cursor-pointer" onclick="recoverPassword();">
+                    {% translate '¿Has olvidado tu contraseña?' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="psswdRecoverForm" class="col-md-6 col-12 py-5 row align-content-center background-light1">
+        <div class="container col-7">
+            <h1 class="headlineM">
+                {% translate 'Recover your password' %}
+            </h1>
+            <p class="highlightL fw-normal mb-5 text-center">
+                {% translate 'Already have an account?' %}  
+                <a href="{% url 'backoffice:login' %}" class="orange40">
+                    {% translate 'Log in' %}
+                </a>
+            </p>
+            <form id="post-recover-password" method="GET" class="user_form" action="{% url 'api:user_password_recovery' %}">
+                {% csrf_token %}
+                <div class="form-input">
+                    <input id="recovery_email" class="bodyL" type="email" name="email" aria-describedby="emailHelp" placeholder="{% translate 'Email Address' %}">
+                    <span class="icon">
+                        <img src="{% static '/img/form-mail-icon.png' %}">
+                    </span>
+                </div>
+                {% if context.message %}
+                   <p class="text-danger text-start">{{context.message}}</p>
+                {% endif %}
+                <button type="submit" class="btn btn-lg btn-block button-large" id="login_button">{% translate 'Send' %}</button>
+            </form>
+            <div id="alert-success" class="alert alert-success" role="alert" style="display: none;"> {% translate 'Recover password send email' %}</div>
+            <div id="alert-fail" class="alert alert-danger" role="alert" style="display: none;"> {% translate 'Recover password dont send email' %} </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

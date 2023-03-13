@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<div class="row" id="page_content">
+    <div class="col-md-3 col-12 d-none d-md-block login-bg" style="background-image: url({% static '/img/register-bg.png' %});">
+    </div>
+    <div class="col-md-9 col-12 py-5 row align-content-center background-light1 pr-pxs-0 pr-sm-2">
+        <div class="container col-11 col-sm-7 col-md-7 col-lg-7 col-xl-7 login_register_container pt-5p">
+            {% include "user_services/minicoders_form.html" %}
+        </div>
+        {% include "user_services/user_plans_template.html" %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 col-12 d-none d-md-block login-bg" style="background-image: url({% static '/img/register-bg.png' %});">
+    </div>
+    <div class="col-md-8 col-12 py-5 row align-content-center background-light1 userplansRow">
+        <div class="container col-12 col-md-7">
+            <div class="row">
+                <div class="forms-size w-100 h-auto text-center payment-message">
+                    {% translate "Your payment has been successfully made." %}
+                </div>
+                <div class="col-xs-12 col-lg-5 payment-control-buttons mt-5 text-md-end text-center">
+                    <a href="{% url 'backoffice:home' %}" class="buttonL content1 content1 surface-light button-middle">{% translate "Go home" %}</a>
+                </div>
+                <div class="col-xs-12 col-lg-7 payment-control-buttons mt-5 text-md-start text-center">
+                    <a href="{% url 'backoffice:parental' %}" class="buttonL content1 text-white accent-dark button-middle">{% translate "Go to Area parental" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+<img src="https://www.awin1.com/sread.img?tt=ns&tv=2&merchant=31728&amount={{context.order_subtotal}}&cr={{context.currency_code}}&ref={{context.order_ref}}&parts=DEFAULT:{{context.sale_amount}}&vc={{context.voucher_code}}&ch=aw&testmode=0" border="0" width="0" height="0">
+<img src="https://www.awin1.com/sread.img?tt=ns&tv=2&merchant=33007&amount={{context.order_subtotal}}&cr={{context.currency_code}}&ref={{context.order_ref}}&parts=DEFAULT:{{context.sale_amount}}&vc={{context.voucher_code}}&ch=aw&testmode=0" border="0" width="0" height="0">
+<img src="https://www.awin1.com/sread.img?tt=ns&tv=2&merchant=35163&amount={{context.order_subtotal}}&cr={{context.currency_code}}&ref={{context.order_ref}}&parts=DEFAULT:{{context.sale_amount}}&vc={{context.voucher_code}}&ch=aw&testmode=0" border="0" width="0" height="0">
+
+<!-- JavaScript Tracking - Mandatory --> 
+ 
+<script type="text/javascript">
+//<![CDATA[ /*** Do not change ***/
+var AWIN = {};
+AWIN.Tracking = {};
+AWIN.Tracking.Sale = {};
+
+ 
+/*** Set your transaction parameters ***/
+AWIN.Tracking.Sale.amount = "{{context.order_subtotal}}";
+AWIN.Tracking.Sale.orderRef = "{{context.order_ref}}";
+AWIN.Tracking.Sale.parts = "DEFAULT:{{context.sale_amount}}";
+AWIN.Tracking.Sale.voucher = "{{context.voucher_code}}";
+//currency fer upper-case
+AWIN.Tracking.Sale.currency = "{{context.currency_code}}";
+AWIN.Tracking.Sale.test = "0";
+AWIN.Tracking.Sale.channel = "aw";
+//]]>
+</script>
+{% endblock %}

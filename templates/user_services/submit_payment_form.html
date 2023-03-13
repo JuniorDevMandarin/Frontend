@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load static %}
+
+<form action="/api/payments/stripe/create_session" method="POST" id="subscription_form">
+    {% csrf_token %}
+    <input type="hidden" name="price_id" value="{{ price_id }}" />
+    <input type="hidden" name="subs_quantity" value="{{ subs_number }}" />
+    <input type="hidden" name="minicoder_name" value="{{ minicoder_n }}" />
+</form>
+
+<script>
+    document.getElementById("subscription_form").submit();
+</script>

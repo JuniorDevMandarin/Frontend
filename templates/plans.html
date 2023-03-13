@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<div class="container position-absolute header-bg-plans-container">
+	<div class="header-bg-plans-1"></div>
+	<div class="header-bg-plans-2"></div>
+</div>
+<div class="container mt-5" style="margin-top: 88px!important;">
+	<div class="row justify-content-md-center ">
+		<div class="col-xs-12 col-md-6">
+			<p class="highlightL content3 text-center">&lt;/ {% translate "Our Plans" %} ></p>
+			<p class="headlineM content1">
+				{% translate "Their Coding Journey starts here" %}
+			</p>
+			<p class="headlineXS mb-5 text-center">
+				{% translate "choose a plan and get started" %}
+			</p>
+		</div>
+	</div>
+	<!-- style="background-image: url({% static 'img/orange-circle-bg.svg' %}); background-repeat: no-repeat; background-position: right; background-position-y: bottom;" -->
+	<div>
+		<div class="row justify-content-md-center">
+			<div class="col-xs-12 col-md-6">
+				<p class="d-flex justify-content-center mt-5 pt-2 mb-5">
+					<img src="{% static 'img/orange-arrow-down.svg' %}" style="visibility: hidden;">
+				</p>
+			</div>
+		</div>
+		<!--<div class="row justify-content-center cursor-pointer">
+			<div class="col-sm-12 row button-plans btn-gruop background-light1">
+				<div id="individualPlan" onclick="changePlansLayout('individualPlan')" class="col-6 px-0 buttonL d-flex align-items-center justify-content-center button-plan active">
+					{% translate "Individual plans" %}
+				</div>
+				<div id="familyPlan" onclick="changePlansLayout('familyPlan')" class="col-6 px-0 buttonL d-flex align-items-center justify-content-center button-plan">
+					{% translate "Family plans" %}
+				</div>
+			</div>
+		</div>-->
+	</div>
+	<div class="col-12">
+		<div class="forms-size row plans-md-size mt-3">
+			<div class="col-12 background-light1 step-plan-card">
+				<div class="row d-flex justify-content-between">
+					<div class="col text-nowrap fs-3 plan-title-color">
+						{% translate "Quarterly" %}
+					</div>
+				</div>
+				<div class="bodyM plan-price text-center mt-3">
+					<span class="headlineS">{% translate '$19.99' %}</span><span class="headlineXS"> /{% translate "month" %}</span>
+					<br>
+					<p class="mt-2">{% translate 'Billed Quarterly($59)' %}</p>
+				</div>
+				<a class="d-flex justify-content-center" href="{% url 'backoffice:register' %}">
+					<div class="buttonL text-white accent-dark py-3 fs-12" style="width: 60%;">
+						{% translate "Choose this plan" %}
+					</div>
+				</a>
+			</div>
+			<div class="col-12 background-light1 step-plan-card">
+				<div class="row d-flex justify-content-between">
+					<div class="col text-nowrap fs-3 plan-title-color">
+						{% translate "Yearly" %}
+					</div>
+				</div>
+				<div class="bodyM plan-price text-center mt-3">
+					<span class="headlineS">{% translate '$12.46' %}</span><span class="headlineXS"> /{% translate "month" %}</span>
+					<br>
+					<p class="mt-2">{% translate 'Billed Annually($149)' %}</p>
+				</div>
+				<a class="d-flex justify-content-center" href="{% url 'backoffice:register' %}">
+					<div class="buttonL text-white accent-dark py-3 fs-12" style="width: 60%;">
+						{% translate "Choose this plan" %}
+					</div>
+				</a>
+			</div>
+			<div class="col-12 background-light1 step-plan-card">
+				<div class="row d-flex justify-content-between">
+					<div class="col text-nowrap fs-3 plan-title-color">
+						{% translate "Lifetime" %}
+					</div>
+				</div>
+				<div class="bodyM plan-price text-center mt-3">
+					<span class="headlineS">{% translate '$349' %}</span>
+					<br>
+					<p class="mt-2">{% translate 'One payment' %}</p>
+				</div>
+				<a class="d-flex justify-content-center" href="{% url 'backoffice:register' %}">
+					<div class="buttonL text-white accent-dark py-3 fs-12" style="width: 60%;">
+						{% translate 'Choose this plan' %}
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="background-light1 general-plan-info mt-5">
+			<div class="row">
+				<div class="headlineXS col-6 col-sm-4 col-lg-3 col-xxl-2 pl-20">
+					{% translate 'All of our plans include:' %}
+				</div>
+				<div class="d-none d-sm-block col-4 col-md-6 col-lg-7 col-xxl-8"></div>
+				<div class="col-6 col-sm-4 col-4 col-md-2 d-flex justify-content-end">
+					<img class="minicoders-img-responsive max-w-80 max-h-80" src="{% static 'img/control-parental-Minicoders 1.png' %}">
+				</div>
+			</div>
+			<div class="row mt-3 mx-xxxl-10">
+				<div class="col-12 col-lg-6">
+					<div class="d-flex mb-3 ms-3 min-height-120 pb-3">
+						<img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little me-3">
+						<div>
+							<b>{% translate "Access to the Private Educational Game Experiences" %}</b>
+							<br>
+							{% translate "Full access to our Play-to-Learn experiences." %}
+						</div>
+					</div>
+					<div class="d-flex mb-3 ms-3 min-height-120 pb-3">
+						<img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little me-3">
+						<div>
+							<b>{% translate "The Minicoders kids Companion App" %}</b>
+							<br>
+							{% translate "The Minicoders kids Companion App An educational video tutorial guide that show kids all what they need to complete the in game challenges to consolidate learning." %}
+						</div>
+						<img class="minicoders-img-responsive img-display-390" src="{% static 'img/smartphone-1-tiers-website-Minicoders.png' %}" style="max-width: 60px;max-height: 100px;">
+					</div>
+				</div>
+				<div class="col-12 col-lg-6">
+					<div class="d-flex mb-3 ms-3 min-height-120 pb-3">
+						<img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little me-3">
+						<div>
+							<b>{% translate "Parental Area" %}</b>
+							<br>
+							{% translate "Parental Area Website for Parents to track your children’s learning progress, and other details such as coding concepts learned and collaboration level." %}
+						</div>
+					</div>
+					<div class="d-flex mb-3 ms-3 min-height-120 pb-3">
+						<img src="{% static 'img/orange-tick.svg' %}" class="text-arrow-little me-3">
+						<div>
+							<b>{% translate "Virtual Assistance" %}</b>
+							<br>
+							{% translate "Virtual Assistance Voice-enabled Virtual Assistant chat bot to provide kids with the answers they need in real time." %}
+						</div>
+						<img class="minicoders-img-responsive img-display-390" src="{% static 'img/virtual-assistance.png' %}" style="max-width: 100px;max-height: 120px;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p class="bodyL text-center content2 mt-4 mx-5">
+		{% translate "Choose a plan to get your kids coding." %}
+	</p>
+</div>
+<div class="backgorund-negative d-none d-md-block"></div>
+<div class="background-light1">
+	<div class="container container-fluid">
+		<p class="highlightL content3 pt-90 text-center">&lt;/ {% translate "Testimonials" %} ></p>
+		
+		<div class="row justify-content-md-center mt-4">
+			<div class="col-xs-12 col-md-6 ">
+				<p class="headlineS content1">{% translate "See why kids love minicoders!" %}</p>
+			</div>
+		</div>
+		<div class="row justify-content-md-center pt-90">
+			<div class="col-xs-12 col-md-10">
+				{% include "testimonials.html" %}
+				<div class="row justify-content-md-center pt-90 text-center">
+					<div class="col-12">
+						<p class="bodyL content3">{% translate "Get started today" %}! 👇</p>
+					</div>
+					<div class="col-12 mt-4">
+						{% if not request.user.is_authenticated %}
+							<a href="/register" class="buttonL content1 text-white accent-dark button-long d-none d-sm-inline">{% translate "Start now" %}</a>
+							<a href="/register" class="buttonL content1 text-white accent-dark button-middle d-block d-sm-none">{% translate "Start now" %}</a>
+						{% endif %}
+						{% if request.user.is_authenticated %}
+							<a href="/register" class="buttonL content1 text-white accent-dark button-long d-none d-sm-inline">{% translate "Parental" %}</a>
+							<a href="/register" class="buttonL content1 text-white accent-dark button-middle d-block d-sm-none">{% translate "Parental" %}</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container container-fluid">
+		<p class="highlightL content3 pt-90 text-center">&lt;/ {% translate "Benefits" %} ></p>
+		
+		<div class="row justify-content-md-center mt-4">
+			<div class="col-xs-12 col-md-6 ">
+				<p class="headlineS content1">{% translate "Prepare your kids with the skills of the today’s digital world" %}</p>
+			</div>
+		</div>
+		<div class="row justify-content-md-center pt-90">
+			<div class="col-xs-12 col-md-10">
+				<div class="row mb-5 justify-content-center benefit-row">
+					<div class="col-lg-6 col-12 d-flex align-items-center benefit-left">
+						<div class="ms-5">
+							<div class="headlineXS benefit">
+								01
+							</div>
+							<div class="highlightL benefit-title">
+								{% translate "A Coding Adventure" %}
+							</div>
+							<div class="bodyL">
+								{% translate "Learning becomes an adventure where kids solve coding challenges at their own pace, collaborating and competing with friends when they wish." %}
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-12 d-flex benefit-right">
+						<img src="{% static 'img/benefit-01.png' %}">
+					</div> 
+				</div>
+				<div class="row mb-5 justify-content-center benefit-row">
+					<div class="col-lg-6 col-12 d-flex benefit-left">
+						<img src="{% static 'img/benefit-02.png' %}">
+					</div>
+					<div class="col-lg-6 col-12 d-flex align-items-center">
+						<div class="ms-5">
+							<div class="headlineXS benefit">
+								02
+							</div>
+							<div class="highlightL benefit-title">
+								{% translate "The Power of Play" %}
+							</div>
+							<div class="bodyL">
+								{% translate "Play based learning allows creativity and problem solving skills to grow. Kids learn how to code without even realizing it!" %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mb-5 justify-content-center benefit-row">
+					<div class="col-lg-6 col-12 d-flex align-items-center benefit-left">
+						<div class="ms-5">
+							<div class="headlineXS benefit">
+								03
+							</div>
+							<div class="highlightL benefit-title">
+								{% translate "21st Century Skills" %}
+							</div>
+							<div class="bodyL">
+								{% translate "Our fun and interactive games keep your child engaged while developing 21-st century skills like problem solving, resilience, creativity, collaboration and logical thinking." %}
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-12 d-flex benefit-right">
+						<img src="{% static 'img/benefit-03.png' %}">
+					</div> 
+				</div>
+				<div class="row mb-5 justify-content-center benefit-row">
+					<div class="col-lg-6 col-12 d-flex benefit-left">
+						<img src="{% static 'img/benefit-04.png' %}">
+					</div>
+					<div class="col-lg-6 col-12 d-flex align-items-center">
+						<div class="ms-5">
+							<div class="headlineXS benefit">
+								04
+							</div>
+							<div class="highlightL benefit-title">
+								{% translate "Personalized Instruction" %}
+							</div>
+							<div class="bodyL">
+								{% translate "Our mentors follow up and track your kid’s progress and answer all of their doubts directly in the metaverse!" %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mb-5 justify-content-center benefit-row">
+					<div class="col-lg-6 col-12 d-flex align-items-center benefit-left">
+						<div class="ms-5">
+							<div class="headlineXS benefit">
+								05
+							</div>
+							<div class="highlightL benefit-title">
+								{% translate "Track your child’s progress" %}
+							</div>
+							<div class="bodyL">
+								{% translate "Follow how your child is excelling" %}
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-12 d-flex benefit-right">
+						<img src="{% static 'img/benefit-05.png' %}">
+					</div> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="background-light1">
+	<div class="container d-flex justify-content-center">
+		<div class="row justify-content-md-center col-xs-12 col-md-10 text-center free-trial-bg">
+			<div class="col-xs-12 col-md-8 text-center">
+				<p class="headlineXS"><span class="orange40">{% translate "Start now" %} </span>{% translate "now and prepare your kids for the challenges of tomorrow" %}</p>
+			</div>
+			<div class="col-xs-12 pt-4">
+				{% if not request.user.is_authenticated %}
+					<a href="/register" class="buttonL content1 text-white accent-dark button-middle">{% translate "Start now" %}</a>
+				{% endif %}
+				{% if request.user.is_authenticated %}
+					<a href="/register" class="buttonL content1 text-white accent-dark button-middle">{% translate "Parental" %}</a>
+				{% endif %}
+            </div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

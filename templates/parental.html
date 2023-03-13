@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'parental.css' %}">
+
+<div class="container-fluid pt-90 mb-200 bg-parental-main">
+    <div class="row justify-content-md-center">
+        <div class="offset-md-4 col-md-8 col text-md-start text-center">
+            <img src="{% static 'img/arrow-right-down.png' %}" />
+        </div>
+        <div class="col-xs-12 col-md-5 ">
+            <p class="headlineL content1">{% translate "Bienvenido a tu área parental " %}{{ father.name }}</p>
+            <p class="bodyL text-center content2 mt-4">{% translate "Gestiona aquí el progreso y el estado de su suscripción." %}</p>
+        </div>
+        <div class="row justify-content-end mt-40">
+            <div class="col-xs-2 col-sm-7 col-md-8 col-xl-9">
+            </div>
+            {% if not minicoders %}
+            <div class="col-10 col-sm-5 col-md-4 col-xl-3">
+                <a href="{% url 'backoffice:add-minicoders' %}" class="text-normal-inter text-center px-3 py-3 bg-EAE0FF border-8px border-0">{% translate "Subscribe" %}</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if message_wrong %}
+    <div class="text-center alert alert-danger" role="alert"> {{ message_wrong }} </div>
+{% endif %}
+
+{% if not minicoders %}
+<div class="container-fluid background-light1 pb-5">
+    <div class="row justify-content-md-center pt-3">
+        {% if verify_email.is_verified %}
+            {% if verify_email.success %}
+            <div class="text-center alert alert-success" role="alert"> {{ verify_email.message }} </div>
+            {% else %}
+            <div class="text-center alert alert-danger" role="alert"> {{ verify_email.error }} </div>
+            {% endif %}
+        {% endif %}
+
+    {% if not father.email_verified %}
+        {% if verify_message is not None %}
+        <div class="col-6 text-center alert alert-success" role="alert">
+            {{ verify_message }}
+        </div>
+        {% endif %}
+
+        <p class="bodyL text-center content2">
+            {% translate 'Verify your email' %}
+        </p>
+        <div class="col-auto">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="send_email_verify" value="send_email_verify" />
+                <button style="border-width: inherit;" class="text-normal-inter text-center px-3 py-3 bg-EAE0FF border-8px border-0" type="submit">{% translate "Resend verify email" %}</button>
+            </form> 
+        </div>
+    {% else %}
+        {% if not minicoders %}
+            
+            <div class="container col-11 col-sm-8 col-md-6 col-lg-5 col-xl-5 login_register_container">
+                {% if error_form_parental is not None %}
+                    <div class="alert alert-danger" role="alert">
+                        {% translate 'Minicoders repeated or promotional code is not valid' %}
+                    </div> 
+                {% endif %}
+                {% include "user_services/minicoders_form.html" %}
+            </div>
+        {% endif %}
+        
+        <div class="col-xs-12 col-md-10 col-xl-8 mt-5">
+            {% if not minicoders %}
+
+            <p>{% translate 'Thank you for registering and welcome to Minicoders' %}!</p>
+
+            <p>{% translate 'You are just one step away from the Play-to-Learn Minicoders experience.' %}</p>
+            
+            <p><strong>{% translate 'Now it is time to enroll your kid/s ' %}!</strong></p>
+            
+            <p>{% translate 'Minicoders offers a learning platform where children learn Coding Skills while having fun with incredible Roblox (more platforms to come) in-game based experiences.<br> With the subscription you will gain access to' %}:</p>
+            
+            <ul>
+                <li>{% translate 'iOS and Android educational APPs' %}</li>
+                <li>{% translate 'Parental control website' %} </li>
+                <li>{% translate 'Virtual Assistant (Gold tier only)' %}</li>
+                <li>{% translate 'And more..' %}</li>
+            </ul>
+            
+            <p class="mb-0">{% translate 'For more information about your subscription plans visit ' %}</p>
+            <a class="link-style" href="https://minicoders.com/plans">https://minicoders.com/plans</a> 
+            
+            <p class="mb-0 mt-3">{% translate 'Don’t be a stranger! For any inquiries you can reach us through' %}</p>
+            <a class="link-style" href="mailto:client-support@minicoders.com">client-support@minicoders.com</a> 
+            
+            <p class="mt-5">{% translate 'The Minicoders Client Support Team' %}</p>
+            {% endif %}
+            
+            {% if minicoders %}
+            <!-- 
+                <p class="content1 pt-5">{% translate "description parental code" %} {{ father.discount_code }}</p>
+                <p class="bodyL content1 pt-4">{{ father.users_registered_count }} {% translate " padres han logrado registrarse con éxito a través de tu código promocional." %}.</p>
+             -->
+            {% endif %}
+        </div>
+    {% endif %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Every minicoder -->
+{% if father.email_verified %}
+{% for minicoder in minicoders %}
+<div class="container-fluid background-light1 pb-5">
+    <div class="row justify-content-sm-center pt-3 bg-FAF7F5">
+        <div class="col-sm-10 pb-5">
+
+            <div class="row mt-5">
+                <div class="col-12 col-sm-8 text-big-title-grotesc text-start color-713EDD mb-3 mb-sm-0">{{ minicoder.name }}
+                    {% if action_message is not None %}
+                        {% if minicoder_changed is not None and minicoder.id == minicoder_changed %}
+                        <div class="alert-text d-block d-sm-inline-flex text-center alert alert-success text-description-inter mb-0" role="alert">
+                            {{ action_message }}
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                {% if not minicoders %}
+                <div class="col-12 col-sm-4 text-center d-flex justify-content-center justify-content-sm-end">
+                    <a href="{% url 'backoffice:add-minicoders' %}" class="text-normal-inter text-center button-borders px-2 py-3">{% translate "Subscribe" %}</a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="mt-5">
+                <form method="POST" class="mb-3 mb-sm-0">
+                    {% csrf_token %}
+                    <input type="hidden" name="minicoder_roblox_id" value="{{ minicoder.id }}" />
+                    <input class="p-2 bg-FFFFFF button-borders" type="text" name="new_roblox_id"  value="{{ minicoder.roblox_id|default:'' }}" placeholder="{% translate 'Enter Roblox ID'  %}" />
+                    <button class="text-normal-inter text-center px-4 py-2 bg-FCC8BB border-8px border-0 mt-3 mt-sm-0" type="submit" style="margin-left: 20px;">{% translate "Confirm" %}</button>
+                </form>
+            </div>
+            <p class="mt-4"><span class="text-title-grotesc">{% translate "Parental Roblox Code:"  %}</span><strong class="fs-4"> {{ minicoder.code_roblox }}</strong></p>
+            <div class="row mt-4">
+                <div class="col-12 col-sm-9 col-xl-10 mb-3 mb-sm-0">
+                    <span class="text-title-grotesc">{% translate "Quick login credential for Minicoders Kids App:" %}</span>
+                    <strong class="fs-4"> {{ minicoder.code_login }}</strong>
+                    <span class="text-danger" style="margin-left: 20px;">{{ minicoder.get_expiration_date_code }}</span>
+                </div>
+                <div class="col-12 col-sm-3 col-xl-2 text-center d-flex justify-content-center">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="generate_new_quicklogin" value="{{ minicoder.id }}" />
+                        <button style="border-width: inherit;" class="text-normal-inter text-center px-2 py-3 bg-EAE0FF border-8px" type="submit">{% translate "Generate new code" %}</button>
+                    </form> 
+                </div>
+                {% if minicoder.has_subscription_active %}
+                    {% if minicoder.subscription_plan_type == 'lifetime' %}
+                        <p class="highlightL content1 pt-1">{% translate "You have a lifetime subscription" %}</p>
+                    {% else %}
+                        <p class="highlightL content1 pt-1">{% translate "Tu suscripción finaliza el dia " %} {{ minicoder.expiration_date_plan }}</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid background-light1 pb-5">
+    <div class="row justify-content-sm-center pt-3">
+        <div class="col-sm-10 pb-5">
+            <div class="row">
+                <div class="col-9 col-xl-10 text-big-title-grotesc text-start color-713EDD">{% translate "’s  progress" %} {{ minicoder.name }}
+                </div>
+            </div>
+
+            {% include "parental_kid_challenges.html" %}
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid background-light1">
+    <div class="row justify-content-sm-center py-4 bg-EAE0FF">
+        <div class="col-sm-10 col-md-11 pb-5">
+            <div class="row mt-4">
+                <div class="d-none d-sm-block col-sm-2 col-xl-4"></div>
+                <div class="col-12 col-sm-10 col-xl-8">
+                    <img src="{% static 'img/arrow-right-down-orange.svg' %}" />
+                    <div class="text-big-title-grotesc">{% translate "Other interesting data" %}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-4 my-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="border-black w-resize-50 d-flex align-items-center">
+                            <img class="icon-black p-2" src="{% static 'img/visible.svg' %}" width="45px" />
+                            <span class="text-title-grotesc minicoder-extra-info">{{ minicoder.extra_1|default:0 }}</span>
+                        </div>
+                    </div>
+                    <div class="w-100 text-center mt-4 text-title-grotesc font-26">{% translate "Videos educativos visualizados en las Apps Minicoders for Kids:" %}</div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 my-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="border-black w-resize-50 d-flex align-items-center">
+                            <img class="icon-black p-2" src="{% static 'img/android.svg' %}" width="45px" />
+                            <span class="text-title-grotesc minicoder-extra-info">{{ minicoder.extra_2|default:0 }}</span>
+                        </div>
+                    </div>
+                    <div class="w-100 text-center mt-4 text-title-grotesc font-26">{% translate "Consultas al Asistente Virtual:" %}</div>
+                </div>
+                <div class="d-none d-lg-block col-12 col-sm-6 col-lg-4 my-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="border-black w-resize-50 d-flex align-items-center">
+                            <img class="icon-black p-2" src="{% static 'img/loader.svg' %}" width="45px" />
+                            <span class="text-title-grotesc minicoder-extra-info">{{ minicoder.extra_3|default:0 }}</span>
+                        </div>
+                    </div>
+                    <div class="w-100 text-center mt-4 text-title-grotesc font-26">{% translate "Número de retos iniciados contra otros jugadores:" %}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-lg-none col-12 col-sm-6 col-lg-4 my-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="border-black w-resize-50 d-flex align-items-center">
+                            <img class="icon-black p-2" src="{% static 'img/loader.svg' %}" width="45px" />
+                            <span class="text-title-grotesc minicoder-extra-info">{{ minicoder.extra_3|default:0 }}</span>
+                        </div>
+                    </div>
+                    <div class="w-100 text-center mt-4 text-title-grotesc font-26">{% translate "Número de retos iniciados contra otros jugadores:" %}</div>
+                </div>
+                <div class="d-lg-none col-12 col-sm-6 col-lg-4 my-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="border-black w-resize-50 d-flex align-items-center">
+                            <img class="icon-black p-2" src="{% static 'img/visible.svg' %}" width="45px" />
+                            <span class="text-title-grotesc minicoder-extra-info">{{ minicoder.extra_4|default:0 }}</span>
+                        </div>
+                    </div>
+                    <div class="w-100 text-center mt-4 text-title-grotesc font-26">{% translate "Número de retos iniciados en equipo en colaboración con otros jugadores:" %}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-none d-lg-block col-12 col-sm-6 col-lg-4 my-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="border-black w-resize-50 d-flex align-items-center">
+                            <img class="icon-black p-2" src="{% static 'img/visible.svg' %}" width="45px" />
+                            <span class="text-title-grotesc minicoder-extra-info">{{ minicoder.extra_4|default:0 }}</span>
+                        </div>
+                    </div>
+                    <div class="w-100 text-center mt-4 text-title-grotesc font-26">{% translate "Número de retos iniciados en equipo en colaboración con otros jugadores:" %}</div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 my-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="border-black w-resize-50 d-flex align-items-center">
+                            <img class="icon-black p-2" src="{% static 'img/android.svg' %}" width="45px" />
+                            <span class="text-title-grotesc minicoder-extra-info">{{ minicoder.extra_5|default:0 }}</span>
+                        </div>
+                    </div>
+                    <div class="w-100 text-center mt-4 text-title-grotesc font-26">{% translate "Visitas a la experiencia de Magic School en Roblox:" %}</div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 my-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="border-black w-resize-50 d-flex align-items-center">
+                            <img class="icon-black p-2" src="{% static 'img/loader.svg' %}" width="45px" />
+                            <span class="text-title-grotesc minicoder-extra-info">{{ minicoder.extra_6|default:0 }}</span>
+                        </div>
+                    </div>
+                    <div class="w-100 text-center mt-4 text-title-grotesc font-26">{% translate "Número de retos lógicos superados: " %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<div class="container-fluid background-light1 py-4">
+    <div class="row justify-content-sm-center pt-3">
+        <div class="row mt-4 pb-3">
+            <div class="d-none d-xl-block col-xl-4"></div>
+            <div class="col-12 col-xl-4 d-flex justify-content-center">
+                <div class="text-end">
+                    <img src="{% static 'img/arrow-left-down-orange.svg' %}" />
+                    <div class="text-big-title-grotesc">{% translate "Your Account" %}</div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row mt-5 text-center" style="padding-right:0px">
+            <div class="col-12 d-sm-flex" style="padding-left: 5%;">
+                {% if father.email_verified %}
+                {% for minicoder in minicoders %}
+                {% if minicoder.subscription_plan_type != "lifetime" %}
+                <form method="POST" class="mb-3 mb-sm-0 mr-sm-20px">
+                    {% csrf_token %}
+                    <input type="hidden" name="cancel_subscription" value="{{ minicoder.id }}" />
+                    {% if minicoder.valid_subscription == False %} 
+                    <button class="text-normal-inter text-center px-3 py-3 bg-EAE0FF border-8px border-0 disabled-btn" type="submit" disabled>{% translate "Cancel subscription" %} {{ minicoder.name }} {% translate "Subscription" %}</button>
+                    {% else %}
+                    <button class="text-normal-inter text-center px-3 py-3 bg-EAE0FF border-8px border-0" type="submit" >{% translate "Cancel subscription" %} {{ minicoder.name }} {% translate "Subscription" %}</button>
+                    {% endif %}
+                </form>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 col-sm-6 d-flex justify-content-center justify-content-sm-start mb-3 mb-sm-0" style="padding-left: 5%;">
+                <a class="cursor-pointer text-normal-inter text-center px-4 py-3 bg-FCC8BB border-8px" data-bs-toggle="modal" data-bs-target="#confirmDeleteAccount">{% translate "Delete Account" %}</a>
+            </div>
+            <div class="col-12 col-sm-6" style="padding-right: 5%;">
+                <form method="POST" class="d-flex justify-content-center justify-content-sm-end">
+                    {% csrf_token %}
+                    <input type="hidden" name="change_subscription_card" value="all_minicoders" />
+                    {% if not minicoders %}
+                    <button style="border-width: inherit;" class="text-normal-inter text-center px-3 py-3 bg-EAE0FF border-8px disabled-btn" type="submit" disabled>{% translate "Change payment card" %}</button>
+                    {% else %}
+                    <button style="border-width: inherit;" class="text-normal-inter text-center px-3 py-3 bg-EAE0FF border-8px" type="submit">{% translate "Change payment card" %}</button>
+                    {% endif %}
+                </form>
+            </div>
+            <!-- <div class="mt-5">{% translate "Your subscription will be renewed on" %}</div> -->
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="confirmDeleteAccount" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <h1 class="modal-title mt-5 text-center" id="modalTitle">{% translate "Are you sure?" %}</h1>
+                    <div class="modal-body">
+                        <p class="mt-3 text-center">{% translate "Do you really want to DELETE THIS ACCOUNT? This process cannot be undone." %}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" class="btn buttonL content1 btn-lg py-2 px-3 m-auto" id="back_button" 
+                            data-bs-dismiss="modal">{% translate "Close" %}</a>
+                        <a type="button" class="btn buttonL content1 text-white btn-danger m-auto" 
+                        href="{% url 'backoffice:delete-account' %}">{% translate "Confirm delete account" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
